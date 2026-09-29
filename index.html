@@ -160,11 +160,19 @@
     "@context":"https://schema.org",
     "@type":"MovingCompany",
     "name":"Transporte Scribano",
-    "legalName":"MARIANO LAZARTE SCRIBANO",
+    "legalName":"MARIANO DANIEL LAZARTE SCRIBANO",
     "description":"Fletes, mini fletes y mudanzas en CABA y AMBA, con servicio de peón.",
     "telephone":"+54 11 2666-7874",
     "areaServed":["Ciudad Autónoma de Buenos Aires","Área Metropolitana de Buenos Aires (AMBA)"]
   }
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17952453731"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-17952453731');
   </script>
 </head>
 
@@ -210,7 +218,7 @@
     <div class="hero" id="inicio">
       <div class="wrap">
         <div>
-          <span class="eyebrow">Transporte Scribano &middot; MARIANO LAZARTE SCRIBANO</span>
+          <span class="eyebrow">Transporte Scribano &middot; MARIANO DANIEL LAZARTE SCRIBANO</span>
           <h1>Fletes y mudanzas en <em>toda CABA y AMBA</em></h1>
           <p class="sub">Camioneta amplia, peón si lo necesitás y presupuesto sin cargo. Contanos qué hay que mover y te respondemos por WhatsApp.</p>
           <div class="cta-row">
@@ -396,7 +404,7 @@
           <div>
             <h2>Contacto</h2>
             <a class="tel" href="tel:+541126667874">011 2666-7874</a>
-            <p class="legal">Transporte Scribano<br>MARIANO LAZARTE SCRIBANO<br>Toda CABA y AMBA &middot; Disponible fines de semana</p>
+            <p class="legal">Transporte Scribano<br>MARIANO DANIEL LAZARTE SCRIBANO<br>Toda CABA y AMBA &middot; Disponible fines de semana</p>
           </div>
           <div>
             <p style="margin-top:0">Escribinos por WhatsApp y te respondemos con el presupuesto.</p>
@@ -412,7 +420,7 @@
 
   <footer>
     <div class="wrap">
-      &copy; <span id="anio">2026</span> Transporte Scribano &middot; MARIANO LAZARTE SCRIBANO &middot; Tel. 011 2666-7874
+      &copy; <span id="anio">2026</span> Transporte Scribano &middot; MARIANO DANIEL LAZARTE SCRIBANO &middot; Tel. 011 2666-7874
     </div>
   </footer>
 
@@ -426,6 +434,32 @@
   </nav>
 
   <script>
+    /* ============ MEDICIÓN GOOGLE ADS ============
+       Cuando tengas los datos, pegalos acá entre las comillas:
+       id  = ID de la etiqueta (ya cargado)
+       wa  = etiqueta de la conversión "Clic en WhatsApp"
+       tel = etiqueta de la conversión "Clic en llamada"
+       Mientras wa y tel estén vacíos, solo se mide la visita a la página. */
+    var ADS = { id: "AW-17952453731", wa: "", tel: "" };
+    /* ============================================== */
+    (function () {
+      var links = document.querySelectorAll('a[href*="api.whatsapp.com"]');
+      for (var i = 0; i < links.length; i++) { links[i].target = "_blank"; links[i].rel = "noopener"; }
+
+      if (typeof gtag !== "function") return;
+
+      function track(label) {
+        if (label) gtag("event", "conversion", { send_to: ADS.id + "/" + label });
+      }
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest ? e.target.closest("a[href]") : null;
+        if (!a) return;
+        var href = a.getAttribute("href") || "";
+        if (href.indexOf("tel:") === 0) track(ADS.tel);
+        else if (href.indexOf("api.whatsapp.com") > -1) track(ADS.wa);
+      });
+    })();
+
     (function () {
       var year = document.getElementById("anio");
       if (year) year.textContent = new Date().getFullYear();
