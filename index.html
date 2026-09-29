@@ -3,57 +3,368 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Transporte Scribano - Fletes y Mudanzas en CABA y GBA</title>
-  <meta name="description" content="Fletes, mini fletes y mudanzas en CABA y GBA. Pedí tu presupuesto por WhatsApp.">
+  <title>Transporte Scribano | Fletes y Mudanzas en CABA y GBA</title>
+  <meta name="description" content="Fletes, mini fletes y mudanzas en CABA y Gran Buenos Aires. Pedí tu presupuesto sin cargo por WhatsApp o llamando al 011 2666-7874.">
+  <meta name="theme-color" content="#17395c">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Transporte Scribano | Fletes y Mudanzas en CABA y GBA">
+  <meta property="og:description" content="Fletes, mini fletes y mudanzas. Presupuesto sin cargo por WhatsApp.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2317395c'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='30' font-weight='700' fill='white' text-anchor='middle'%3ETS%3C/text%3E%3C/svg%3E">
+
   <style>
-    body{margin:0;font-family:Arial,sans-serif;color:#222;background:#f5f5f5;line-height:1.5}
-    header{background:#1a3a5c;color:#fff;padding:24px 16px;text-align:center}
-    header h1{margin:0 0 4px;font-size:26px}
-    header p{margin:0;font-size:15px;opacity:.9}
-    main{max-width:640px;margin:0 auto;padding:16px}
-    section{background:#fff;border-radius:8px;padding:16px;margin-bottom:16px}
-    h2{margin-top:0;font-size:20px;color:#1a3a5c}
-    ul{padding-left:20px;margin:0}
-    .btn{display:block;text-align:center;padding:16px;background:#25D366;color:#fff;
-         font-size:20px;font-weight:bold;text-decoration:none;border-radius:8px}
-    .tel{font-size:22px;font-weight:bold}
-    a{color:#1a3a5c}
-    footer{text-align:center;font-size:13px;color:#666;padding:16px}
+    /* ====== COLORES DE MARCA: cambiá solo estas 4 líneas ====== */
+    :root{
+      --brand:#17395c;        /* color principal (encabezado, títulos) */
+      --brand-dark:#0f2740;   /* variante oscura */
+      --accent:#f28c28;       /* color de acento (detalles) */
+      --wa:#0f8a47;           /* verde del botón de WhatsApp */
+      /* ========================================================= */
+      --bg:#f4f6f9;
+      --card:#ffffff;
+      --text:#1d2733;
+      --muted:#5a6675;
+      --line:#e2e7ee;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55;padding-bottom:84px}
+    a{color:var(--brand)}
+    img{max-width:100%}
+    .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+    :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+    /* Encabezado */
+    .topbar{background:var(--brand-dark);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+    .topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;min-width:0}
+    .brand-mark{width:44px;height:44px;border-radius:10px;background:#fff;display:grid;place-items:center;overflow:hidden;flex:none}
+    .brand-mark img{width:100%;height:100%;object-fit:contain}
+    .brand-mark b{display:none;place-items:center;width:100%;height:100%;background:var(--accent);color:#fff;font-size:18px;letter-spacing:.5px}
+    .brand-mark.nologo b{display:grid}
+    .brand-mark.nologo img{display:none}
+    .brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+    .brand-text strong{font-size:17px}
+    .brand-text span{font-size:11.5px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .top-call{color:#fff;text-decoration:none;font-weight:700;font-size:15px;border:1.5px solid rgba(255,255,255,.55);padding:8px 14px;border-radius:999px;white-space:nowrap}
+    .top-call:hover{background:rgba(255,255,255,.12)}
+
+    /* Hero */
+    .hero{background:linear-gradient(160deg,var(--brand) 0%,var(--brand-dark) 100%);color:#fff;padding:44px 0 56px}
+    .hero h1{margin:0 0 12px;font-size:clamp(28px,6vw,44px);line-height:1.12;letter-spacing:-.5px}
+    .hero h1 em{font-style:normal;color:var(--accent)}
+    .hero p{margin:0 0 24px;font-size:clamp(16px,2.6vw,19px);max-width:620px;opacity:.95}
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:12px;font-weight:700;font-size:18px;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit;transition:transform .12s ease,box-shadow .12s ease}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.22)}
+    .btn-wa{background:var(--wa);color:#fff}
+    .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+    .btn svg{width:22px;height:22px;flex:none}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
+    .chips li{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-size:14px}
+
+    /* Secciones */
+    section{padding:44px 0}
+    .section-alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    h2{margin:0 0 6px;font-size:clamp(22px,4vw,30px);color:var(--brand);letter-spacing:-.3px}
+    .lead{margin:0 0 26px;color:var(--muted);max-width:640px}
+    .grid{display:grid;gap:16px}
+    .g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+    .card h3{margin:12px 0 6px;font-size:18px;color:var(--brand)}
+    .card p{margin:0;color:var(--muted);font-size:15.5px}
+    .icon{width:48px;height:48px;border-radius:12px;background:rgba(242,140,40,.14);display:grid;place-items:center}
+    .icon svg{width:26px;height:26px;stroke:var(--brand);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+    .step-n{width:38px;height:38px;border-radius:50%;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:800}
+
+    /* Cotizador */
+    .quote{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;max-width:680px}
+    .field{margin-bottom:14px}
+    label{display:block;font-weight:600;font-size:14.5px;margin-bottom:5px}
+    input,select{width:100%;padding:13px 14px;font-size:16px;border:1.5px solid #c9d1dc;border-radius:10px;font-family:inherit;background:#fff;color:var(--text)}
+    input:focus,select:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px rgba(23,57,92,.18)}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .quote .btn{width:100%}
+    .hint{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+
+    /* Zonas */
+    .zones{display:flex;flex-wrap:wrap;gap:10px;padding:0;margin:0 0 14px;list-style:none}
+    .zones li{background:#fff;border:1.5px solid var(--line);border-left:5px solid var(--accent);padding:10px 16px;border-radius:10px;font-weight:600}
+
+    /* FAQ */
+    details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:0 18px}
+    summary{cursor:pointer;font-weight:700;padding:16px 0;color:var(--brand);list-style:none;display:flex;justify-content:space-between;gap:12px}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";font-size:24px;line-height:1;color:var(--accent)}
+    details[open] summary::after{content:"\2212"}
+    details p{margin:0 0 16px;color:var(--muted)}
+
+    /* Contacto */
+    .contact{background:var(--brand);color:#fff;border-radius:var(--radius);padding:30px 24px;display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .contact h2{color:#fff}
+    .contact a{color:#fff}
+    .contact .tel{font-size:clamp(26px,5vw,34px);font-weight:800;text-decoration:none;display:inline-block;margin:4px 0 10px}
+    .contact .legal{opacity:.85;font-size:14.5px}
+
+    footer{padding:26px 0 8px;text-align:center;color:var(--muted);font-size:13.5px}
+
+    /* Barra fija inferior (celular) */
+    .dock{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#fff;border-top:1px solid var(--line);box-shadow:0 -4px 14px rgba(0,0,0,.1);padding:10px 12px calc(10px + env(safe-area-inset-bottom));display:flex;gap:10px}
+    .dock a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 8px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none}
+    .dock .d-wa{background:var(--wa);color:#fff;flex:1.5}
+    .dock .d-call{background:var(--brand);color:#fff}
+    .dock svg{width:20px;height:20px}
+    @media(min-width:900px){.dock{display:none}body{padding-bottom:0}}
+    @media(max-width:520px){.row2{grid-template-columns:1fr}.top-call{display:none}.btn{width:100%}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"MovingCompany",
+    "name":"Transporte Scribano",
+    "legalName":"MARIANO LAZARTE SCRIBANO",
+    "description":"Fletes, mini fletes y mudanzas en CABA y Gran Buenos Aires.",
+    "telephone":"+54 11 2666-7874",
+    "areaServed":["Ciudad Autónoma de Buenos Aires","Avellaneda","Lanús","Lomas de Zamora","Gran Buenos Aires"]
+  }
+  </script>
 </head>
+
 <body>
-  <header>
-    <h1>Transporte Scribano</h1>
-    <p>MARIANO LAZARTE SCRIBANO</p>
-  </header>
-  <main>
-    <section>
-      <a class="btn" href="https://api.whatsapp.com/send?phone=5491126667874&text=Hola%2C%20quiero%20cotizar%20un%20flete.%20%C2%BFMe%20pas%C3%A1s%20precio%20y%20disponibilidad%3F">
-        Pedí tu presupuesto por WhatsApp
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#inicio" aria-label="Transporte Scribano, ir al inicio">
+        <span class="brand-mark" id="brandMark">
+          <img src="logo.png" alt="" onerror="this.parentNode.classList.add('nologo')">
+          <b>TS</b>
+        </span>
+        <span class="brand-text">
+          <strong>Transporte Scribano</strong>
+          <span>MARIANO LAZARTE SCRIBANO</span>
+        </span>
       </a>
+      <a class="top-call" href="tel:+541126667874">011 2666-7874</a>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <div class="hero">
+      <div class="wrap">
+        <h1>Fletes y mudanzas en <em>CABA y GBA</em></h1>
+        <p>Trasladamos muebles, mercadería y mudanzas completas. Contanos qué necesitás mover y te pasamos el presupuesto sin cargo.</p>
+        <div class="cta-row">
+          <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=5491126667874&text=Hola%2C%20quiero%20cotizar%20un%20flete.%20%C2%BFMe%20pas%C3%A1s%20precio%20y%20disponibilidad%3F">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6A12 12 0 0 0 12 24c6.6 0 12-5.4 12-12 0-3.2-1.2-6.200-3.500-8.500zM12 22c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.700 1 1-3.600-.2-.4A9.900 9.900 0 0 1 2 12C2 6.500 6.500 2 12 2c2.700 0 5.200 1 7.100 2.900A10 10 0 0 1 22 12c0 5.500-4.500 10-10 10zm5.500-7.500c-.3-.1-1.800-.9-2-1s-.5-.1-.7.1-.8 1-1 1.200-.4.200-.7.100a8.200 8.200 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2 0-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400s-1 1-1 2.400 1 2.800 1.200 3c.1.200 2 3.100 4.900 4.300 1.800.8 2.500.9 3.400.7.600-.1 1.800-.7 2-1.400s.2-1.300.2-1.400-.3-.2-.6-.4z"/></svg>
+            Pedí tu presupuesto
+          </a>
+          <a class="btn btn-ghost" href="tel:+541126667874">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.800 19.800 0 0 1-8.600-3.100 19.500 19.500 0 0 1-6-6A19.800 19.800 0 0 1 2.100 4.200 2 2 0 0 1 4.100 2h3a2 2 0 0 1 2 1.700c.1 1 .4 1.900.7 2.800a2 2 0 0 1-.5 2.100L8.100 9.900a16 16 0 0 0 6 6l1.300-1.300a2 2 0 0 1 2.100-.4c.9.300 1.800.6 2.800.7a2 2 0 0 1 1.700 2z"/></svg>
+            Llamar ahora
+          </a>
+        </div>
+        <ul class="chips">
+          <li>Presupuesto sin cargo</li>
+          <li>Disponible fines de semana</li>
+          <li>Atención por WhatsApp</li>
+        </ul>
+      </div>
+    </div>
+
+    <section id="servicios">
+      <div class="wrap">
+        <h2>Nuestros servicios</h2>
+        <p class="lead">Desde un mueble suelto hasta una mudanza completa.</p>
+        <div class="grid g4">
+          <article class="card">
+            <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1 6h13v10H1zM14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg></div>
+            <h3>Fletes</h3>
+            <p>Traslados en camioneta dentro de CABA y Gran Buenos Aires, para cargas medianas.</p>
+          </article>
+          <article class="card">
+            <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div>
+            <h3>Mini fletes</h3>
+            <p>Ideal para pocos bultos: electrodomésticos, muebles sueltos o compras grandes.</p>
+          </article>
+          <article class="card">
+            <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div>
+            <h3>Mudanzas</h3>
+            <p>Mudanzas de departamentos y casas. Coordinamos día y horario con vos.</p>
+          </article>
+          <article class="card">
+            <div class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 8l3-4h12l3 4M9 12h6"/></svg></div>
+            <h3>Mercadería</h3>
+            <p>Traslado de mercadería para comercios y emprendedores, con entregas puntuales.</p>
+          </article>
+        </div>
+      </div>
     </section>
-    <section>
-      <h2>Servicios</h2>
-      <ul>
-        <li>Fletes</li>
-        <li>Mini fletes</li>
-        <li>Mudanzas</li>
-        <li>Traslado de muebles y mercadería</li>
-      </ul>
+
+    <section class="section-alt" id="como-funciona">
+      <div class="wrap">
+        <h2>Cómo trabajamos</h2>
+        <p class="lead">Un proceso simple, sin vueltas.</p>
+        <div class="grid g3">
+          <article class="card">
+            <div class="step-n">1</div>
+            <h3>Nos escribís</h3>
+            <p>Por WhatsApp o por teléfono: decinos desde dónde, hasta dónde y qué hay que llevar.</p>
+          </article>
+          <article class="card">
+            <div class="step-n">2</div>
+            <h3>Te pasamos el presupuesto</h3>
+            <p>Con los datos que nos das te cotizamos, sin cargo y sin compromiso.</p>
+          </article>
+          <article class="card">
+            <div class="step-n">3</div>
+            <h3>Coordinamos y listo</h3>
+            <p>Acordamos día y horario, y hacemos el traslado.</p>
+          </article>
+        </div>
+      </div>
     </section>
-    <section>
-      <h2>Zonas</h2>
-      <p>CABA y Gran Buenos Aires (zona sur: Avellaneda, Lanús, Lomas de Zamora).</p>
+
+    <section id="cotizar">
+      <div class="wrap">
+        <h2>Pedí tu presupuesto</h2>
+        <p class="lead">Completá los datos y se arma el mensaje en WhatsApp. Así respondemos más rápido.</p>
+        <form class="quote" id="quoteForm" autocomplete="off">
+          <div class="field">
+            <label for="servicio">¿Qué necesitás?</label>
+            <select id="servicio">
+              <option>Flete</option>
+              <option>Mini flete</option>
+              <option>Mudanza</option>
+              <option>Traslado de mercadería</option>
+            </select>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="desde">Retiro (barrio o localidad)</label>
+              <input id="desde" type="text" required maxlength="80" placeholder="Ej: Parque Avellaneda">
+            </div>
+            <div class="field">
+              <label for="hasta">Entrega (barrio o localidad)</label>
+              <input id="hasta" type="text" required maxlength="80" placeholder="Ej: Lanús">
+            </div>
+          </div>
+          <div class="field">
+            <label for="carga">¿Qué hay que llevar? (opcional)</label>
+            <input id="carga" type="text" maxlength="160" placeholder="Ej: heladera, mesa y 10 cajas">
+          </div>
+          <div class="field">
+            <label for="fecha">¿Cuándo lo necesitás? (opcional)</label>
+            <input id="fecha" type="text" maxlength="80" placeholder="Ej: sábado a la mañana">
+          </div>
+          <button class="btn btn-wa" type="submit">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+            Enviar por WhatsApp
+          </button>
+          <p class="hint">Se abre WhatsApp con el mensaje ya escrito. Podés modificarlo antes de enviarlo.</p>
+        </form>
+      </div>
     </section>
-    <section>
-      <h2>Contacto</h2>
-      <p class="tel">Teléfono: <a href="tel:01126667874">011 2666-7874</a></p>
-      <p>Disponible fines de semana.</p>
+
+    <section class="section-alt" id="zonas">
+      <div class="wrap">
+        <h2>Zonas de cobertura</h2>
+        <p class="lead">Trabajamos en la Ciudad de Buenos Aires y Gran Buenos Aires, con foco en zona sur.</p>
+        <ul class="zones">
+          <li>CABA</li>
+          <li>Avellaneda</li>
+          <li>Lanús</li>
+          <li>Lomas de Zamora</li>
+          <li>Zona sur GBA</li>
+        </ul>
+        <p class="hint">¿Tu zona no está en la lista? Consultanos igual, cotizamos traslados a otras localidades.</p>
+      </div>
     </section>
+
+    <section id="preguntas">
+      <div class="wrap">
+        <h2>Preguntas frecuentes</h2>
+        <p class="lead">Lo que más nos consultan.</p>
+        <details>
+          <summary>¿Cómo se calcula el precio?</summary>
+          <p>Depende de la distancia, la cantidad de bultos y si hace falta ayuda para cargar y descargar. Pasanos los datos y te cotizamos sin cargo.</p>
+        </details>
+        <details>
+          <summary>¿Trabajan los fines de semana?</summary>
+          <p>Sí, tenemos disponibilidad los fines de semana. Consultanos el día y el horario que necesitás.</p>
+        </details>
+        <details>
+          <summary>¿Qué zonas cubren?</summary>
+          <p>CABA y Gran Buenos Aires, especialmente zona sur (Avellaneda, Lanús, Lomas de Zamora). Si tu zona no figura, consultanos.</p>
+        </details>
+        <details>
+          <summary>¿Cómo pido un presupuesto?</summary>
+          <p>Escribinos por WhatsApp o llamanos al 011 2666-7874. También podés completar el formulario de esta página.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-alt" id="contacto">
+      <div class="wrap">
+        <div class="contact">
+          <div>
+            <h2>Contacto</h2>
+            <a class="tel" href="tel:+541126667874">011 2666-7874</a>
+            <p class="legal">Transporte Scribano<br>MARIANO LAZARTE SCRIBANO<br>Disponible fines de semana</p>
+          </div>
+          <div>
+            <p style="margin-top:0">Escribinos por WhatsApp y te respondemos con el presupuesto.</p>
+            <a class="btn btn-wa" href="https://api.whatsapp.com/send?phone=5491126667874&text=Hola%2C%20quiero%20cotizar%20un%20flete.%20%C2%BFMe%20pas%C3%A1s%20precio%20y%20disponibilidad%3F">Abrir WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+
   <footer>
-    Transporte Scribano - MARIANO LAZARTE SCRIBANO<br>
-    Tel. 011 2666-7874
+    <div class="wrap">
+      &copy; <span id="anio">2026</span> Transporte Scribano - MARIANO LAZARTE SCRIBANO - Tel. 011 2666-7874
+    </div>
   </footer>
+
+  <nav class="dock" aria-label="Contacto rápido">
+    <a class="d-wa" href="https://api.whatsapp.com/send?phone=5491126667874&text=Hola%2C%20quiero%20cotizar%20un%20flete.%20%C2%BFMe%20pas%C3%A1s%20precio%20y%20disponibilidad%3F">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>WhatsApp
+    </a>
+    <a class="d-call" href="tel:+541126667874">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.800 19.800 0 0 1-8.600-3.100 19.500 19.500 0 0 1-6-6A19.800 19.800 0 0 1 2.100 4.200 2 2 0 0 1 4.100 2h3a2 2 0 0 1 2 1.700c.1 1 .4 1.900.7 2.800a2 2 0 0 1-.5 2.100L8.100 9.900a16 16 0 0 0 6 6l1.300-1.300a2 2 0 0 1 2.100-.4c.9.300 1.800.6 2.800.7a2 2 0 0 1 1.700 2z"/></svg>Llamar
+    </a>
+  </nav>
+
+  <script>
+    (function () {
+      var year = document.getElementById("anio");
+      if (year) year.textContent = new Date().getFullYear();
+
+      var form = document.getElementById("quoteForm");
+      if (!form) return;
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var v = function (id) { return document.getElementById(id).value.trim(); };
+        var lines = ["Hola, quiero cotizar un servicio.", "Servicio: " + v("servicio"),
+                     "Retiro: " + v("desde"), "Entrega: " + v("hasta")];
+        if (v("carga")) lines.push("Qué hay que llevar: " + v("carga"));
+        if (v("fecha")) lines.push("Cuándo: " + v("fecha"));
+        lines.push("¿Me pasás precio y disponibilidad?");
+        var url = "https://api.whatsapp.com/send?phone=5491126667874&text=" + encodeURIComponent(lines.join("\n"));
+        var a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    })();
+  </script>
 </body>
 </html>
